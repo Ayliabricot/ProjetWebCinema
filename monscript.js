@@ -1,26 +1,29 @@
 async function loadData(tendancesChoix){
-    /*let boutonActif;
+    let boutonActif;
     let boutonInactif;
+    let tendanceValeurUrl;
 
     let boutonAujourdhui=document.querySelector("#aujourdhui");
     let boutonSemaine=document.querySelector("#semaine");
 
     boutonAujourdhui.addEventListener ('click',()=>{
-            console.log(generation);
+            console.log("aujourdhui");
             loadData("aujourdhui");
     });
     boutonSemaine.addEventListener ('click',()=>{
-            console.log(generation);
+            console.log("semaine");
             loadData("semaine");
     });
 
     if (tendancesChoix=="aujourdhui"){
         boutonActif=boutonAujourdhui;
         boutonInactif=boutonSemaine;
+        tendanceValeurUrl="day";
     }
-    if (tendancesChoix=="semaine"){
+    else if (tendancesChoix=="semaine"){
         boutonActif=boutonSemaine;
         boutonInactif=boutonAujourdhui;
+        tendanceValeurUrl="week";
     }
     boutonActif.style.backgroundColor = "#032541";
     boutonActif.style.borderColor = "white";
@@ -28,13 +31,13 @@ async function loadData(tendancesChoix){
 
     boutonInactif.style.backgroundColor = "white";
     boutonInactif.style.borderColor = "#032541";
-    boutonInactif.style.color = "#032541";*/
+    boutonInactif.style.color = "#032541";
 
     let ok="Ok";
     let main=document.querySelector("main");
 
     const API_KEY = "4ec6eac902806dbb1cbe874e60ac5cf2";
-    const data = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}&language=fr-FR`)
+    const data = await fetch(`https://api.themoviedb.org/3/trending/movie/${tendanceValeurUrl}?api_key=${API_KEY}&language=fr-FR`)
         .then(response => response.json())
         .catch(error => ok="Erreur : " + error);
         
@@ -45,6 +48,7 @@ async function loadData(tendancesChoix){
 
 function afficherFilms(films) {
     const section = document.querySelector("#listeFilms");
+    section.innerHTML='';
     const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
     
     const conteneur = document.createElement("div");
@@ -76,6 +80,4 @@ function afficherFilms(films) {
 }
  
 
-let tendancesChoix="Aujourd'hui";
-
-loadData("aujourdhui");
+loadData("semaine");
