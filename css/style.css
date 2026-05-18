@@ -74,7 +74,7 @@ main{
             }
         }
     }
-    #tendances{
+    section{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -104,70 +104,89 @@ main{
 
             }
         }
-    }
+        #listeFilms {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
 
-     
-    #listeFilms {
-        display: flex;
-        justify-content: space-around;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-     .carteFilm {
-        width :15%;
-        margin-right : 8%;
-        margin-bottom: 5%;
-        .affiche {
-            position: relative;
-            transition: transform 0.2s;
-            box-shadow: 0.1em 0.2em 0.3em #b6b6b6;
-            :hover {
-                box-shadow: 0.3em 0.3em 0.3em #6a6a6a;
-            }
-            img {
-                width: 100%;
-                display: block;
-            }
-            .note {
-                position: absolute;
-                bottom: -18px;
-                right: -18px;
-                width: 30%;
-                height : 20%;
-                background: #032541;
-                border-radius: 50%;
-                border: 0.1em solid white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1em;
-                font-weight:bolder;
-                color: white;
-                font-family: "Roboto", sans-serif;
+        #listeSeries {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        
+        .carteFilm {
+            width :15%;
+            margin-right : 8%;
+            margin-bottom: 5%;
+            .affiche {
+                position: relative;
+                transition: transform 0.2s;
                 box-shadow: 0.1em 0.2em 0.3em #b6b6b6;
                 :hover {
-                    box-shadow: 0.3em 0.3em 0.3em #032541;
+                    box-shadow: 0.3em 0.3em 0.3em #6a6a6a;
                 }
-                
+                img {
+                    width: 100%;
+                    display: block;
+                }
+                .note {
+                    position: absolute;
+                    bottom: -18px;
+                    right: -18px;
+                    width: 30%;
+                    height : 20%;
+                    background: #032541;
+                    border-radius: 50%;
+                    border: 0.1em solid white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1em;
+                    font-weight:bolder;
+                    color: white;
+                    font-family: "Roboto", sans-serif;
+                    box-shadow: 0.1em 0.2em 0.3em #b6b6b6;
+                    :hover {
+                        box-shadow: 0.3em 0.3em 0.3em #032541;
+                    }
+                    
+                }
+            }
+            .infoFilm {
+                margin-top: 10%;
+                display: flex;
+                flex-direction: column;
+                h3{
+                    font-family: "Roboto", sans-serif;
+                    font-size: 1.1em;
+                    color: #032541;
+                    margin : 0%;
+                }
+                p{
+                    margin : 0%;
+                    font-family: "Roboto", sans-serif;
+                    font-size: 0.8em;
+                    color: black;
+                }
             }
         }
-        .infoFilm {
-            margin-top: 10%;
-            display: flex;
-            flex-direction: column;
-            h3{
-                font-family: "Roboto", sans-serif;
-                font-size: 1.1em;
-                color: #032541;
-                margin : 0%;
-            }
-            p{
-                margin : 0%;
-                font-family: "Roboto", sans-serif;
-                font-size: 0.8em;
-                color: black;
-            }
+    }
+
+    #series{
+        background-color: #E7E7E7;
+        #meilleures{
+            background-color : #032541;
+            border-color : white;
+            color : white;
+        }
+        #populaires{
+            background-color : white;
+            border-color : #032541;
+            color : #032541;
         }
     }
 }
