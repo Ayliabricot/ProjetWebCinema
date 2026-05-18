@@ -13,9 +13,9 @@
     <header>
         <i class="fa-solid fa-film"></i>
         <div id="conteneurHeader">
-            <h2>Films</h2>
-            <h2>Séries</h2>
-            <h2>Populaires</h2>
+            <h2><a href="#rediriger_films">Films</a></h2>
+            <h2><a href="#rediriger_series">Séries</a></h2>
+            <h2><a href="#rediriger_tendances">Populaires</a></h2>
         </div>
     </header>
     <main>
@@ -27,8 +27,8 @@
         </section>
         
         <section id="tendances">
-            <div id="conteneurMenuTendances">
-                <h1>Tendances</h1>
+            <div class="conteneurMenuSection">
+                <h1 id="rediriger_tendances">Tendances</h1>
                 <button id="aujourdhui">
                     Aujourd'hui
                 </button>
@@ -36,17 +36,17 @@
                     Cette semaine
                 </button>
             </div>
-            <div id="listeFilms">
+            <div id="listeTendances">
 
             </div>
         </section>
         <section id="series">
-            <div id="conteneurMenuTendances">
-                <h1>Séries TV</h1>
-                <button id="meilleures">
+            <div class="conteneurMenuSection">
+                <h1 id="rediriger_series">Séries TV</h1>
+                <button id="meilleuresSeries" class="meilleures">
                     Mieux notées
                 </button>
-                <button id="populaires">
+                <button id="populairesSeries" class="populaires">
                     Populaires
                 </button>
             </div>
@@ -54,9 +54,23 @@
 
             </div>
         </section>
+        <section id="films">
+            <div class="conteneurMenuSection">
+                <h1 id="rediriger_films">Films</h1>
+                <button id="meilleursFilms" class="meilleures">
+                    Mieux notés
+                </button>
+                <button id="populairesFilms" class="populaires">
+                    Populaires
+                </button>
+            </div>
+            <div id="listeFilms">
+
+            </div>
+        </section>
     </main>
     <footer>
-                
+      
     </footer>
 </body>
 </html>

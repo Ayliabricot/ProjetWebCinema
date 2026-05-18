@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+html{
+    scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+    color : inherit;
+}
+
 body{
     background-color: white;
     width: 100%;
@@ -39,7 +48,6 @@ main{
     width : 100%;
     background-color: white;
     #accueilRecherche{
-        width : 100%;
         background-image: url(".././images/thor.png");
         background-size: cover;
         background-position:100%;
@@ -49,6 +57,7 @@ main{
         display : flex;
         justify-content: center;
         #barreRecherche{
+            margin :auto;
             border-radius: 5px;
             padding : 1%;
             background-color: #E7E7E7;
@@ -79,32 +88,44 @@ main{
         flex-direction: column;
         justify-content: center;
         background-color: white;
-        padding-left : 8%;
-        #conteneurMenuTendances{
+        padding-top:2%;
+        .conteneurMenuSection{
             display : flex;
             justify-content: flex-start;
             margin-bottom : 2%;
             h1{
-                font-size: 2.5em;
+                font-size: 2.4em;
                 font-family: "Roboto";
                 font-weight: lighter;
                 color : black;
                 display: flex;
                 justify-content: flex-start;
-                margin-right : 5%;
+                margin-right : 3.5%;
+                margin-left : 8%;
             }
             button{
                 margin-top : auto;
                 margin-bottom: auto;
-                padding-top : 1%;
-                padding-bottom : 1%;
-                font-size: 1.2em;
-                margin-right : 5%;
-                width : 14%;
+                padding-top : 0.7%;
+                padding-bottom : 0.7%;
+                font-size: 1.3em;
+                margin-right : 3.5%;
+                width : 12%;
 
             }
+            .meilleures{
+                background-color : #032541;
+                border-color : white;
+                color : white;
+            }
+            .populaires{
+                background-color : white;
+                border-color : #032541;
+                color : #032541;
+            }
         }
-        #listeFilms {
+        #listeTendances {
+            margin-left :3.6%;
             display: flex;
             justify-content: space-around;
             flex-direction: row;
@@ -112,11 +133,22 @@ main{
         }
 
         #listeSeries {
+            margin-left :3.6%;
             display: flex;
             justify-content: space-around;
             flex-direction: row;
             flex-wrap: wrap;
         }
+
+         #listeFilms {
+            margin-left :3.6%;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        
         
         .carteFilm {
             width :15%;
@@ -178,15 +210,5 @@ main{
 
     #series{
         background-color: #E7E7E7;
-        #meilleures{
-            background-color : #032541;
-            border-color : white;
-            color : white;
-        }
-        #populaires{
-            background-color : white;
-            border-color : #032541;
-            color : #032541;
-        }
     }
 }

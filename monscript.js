@@ -14,15 +14,25 @@ async function loadData(choix,choixInverse){
             boutonInactif=document.querySelector("#aujourdhui");
             tendanceValeurUrl="trending/movie/week";
             break;
-        case "meilleures":
-            boutonActif=document.querySelector("#meilleures");
-            boutonInactif=document.querySelector("#populaires");
+        case "meilleuresSeries":
+            boutonActif=document.querySelector("#meilleuresSeries");
+            boutonInactif=document.querySelector("#populairesSeries");
             tendanceValeurUrl="tv/top_rated";
             break;
-        case "populaires":
-            boutonActif=document.querySelector("#populaires");
-            boutonInactif=document.querySelector("#meilleures");
+        case "populairesSeries":
+            boutonActif=document.querySelector("#populairesSeries");
+            boutonInactif=document.querySelector("#meilleuresSeries");
             tendanceValeurUrl="tv/popular";
+            break;
+        case "meilleursFilms":
+            boutonActif=document.querySelector("#meilleursFilms");
+            boutonInactif=document.querySelector("#populairesFilms");
+            tendanceValeurUrl="movie/top_rated";
+            break;
+        case "populairesFilms":
+            boutonActif=document.querySelector("#populairesFilms");
+            boutonInactif=document.querySelector("#meilleursFilms");
+            tendanceValeurUrl="movie/popular";
             break;
     }
 
@@ -68,10 +78,13 @@ function afficher(films,choix,choixInverse) {
     let date;
     
     if (choix=="aujourdhui" || choixInverse=="aujourdhui"){
-        choixListe="#listeFilms";
+        choixListe="#listeTendances";
     }
-    else if (choix=="meilleures" || choixInverse=="meilleures"){
+    else if (choix=="meilleuresSeries" || choixInverse=="meilleuresSeries"){
         choixListe="#listeSeries";
+    }
+    else if (choix=="meilleursFilms" || choixInverse=="meilleursFilms"){
+        choixListe="#listeFilms";
     }
     const section = document.querySelector(choixListe);
     section.innerHTML='';
@@ -81,11 +94,11 @@ function afficher(films,choix,choixInverse) {
     conteneur.id = choixListe.slice(1);
  
     films.slice(0,4).forEach(film => {
-        if (choix=="aujourdhui" || choixInverse=="aujourdhui"){
+        if (choix=="aujourdhui" || choixInverse=="aujourdhui" || choix=="meilleursFilms" || choixInverse=="meilleursFilms"){
             titre=film.title;
             date=film.release_date;
         }
-        else if (choix=="meilleures" || choixInverse=="meilleures"){
+        else if (choix=="meilleuresSeries" || choixInverse=="meilleuresSeries"){
             titre=film.name;
             date=film.first_air_date;
         }
@@ -115,4 +128,5 @@ function afficher(films,choix,choixInverse) {
  
 
 loadData("semaine","aujourdhui");
-loadData("populaires","meilleures")
+loadData("populairesSeries","meilleuresSeries")
+loadData("populairesFilms","meilleursFilms")
