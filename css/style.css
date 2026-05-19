@@ -47,6 +47,7 @@ header{
 main{
     width : 100%;
     background-color: white;
+   
     #accueilRecherche{
         background-image: url(".././images/thor.png");
         background-size: cover;
@@ -83,6 +84,7 @@ main{
             }
         }
     }
+    
     section{
         display: flex;
         flex-direction: column;
@@ -205,6 +207,15 @@ main{
                     color: black;
                 }
             }
+        }
+    }
+
+    #resultats{
+        padding-top:0%;
+        background-color: #E7E7E7;
+        h1{
+            margin-top : 2%;
+            margin-left : 8%;
         }
     }
 

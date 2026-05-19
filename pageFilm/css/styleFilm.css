@@ -197,3 +197,19 @@ main{
     }
 }
 
+footer{
+    width : 100%;
+    font-family: 'Roboto';
+    font-weight: lighter;
+    align-items: center;
+    display : flex;
+    margin:0;
+    justify-content: space-around;
+    background-color: #032541;
+    p{
+        font-size: 1.4em;
+            font-weight: lighter;
+            text-align: center;
+            color: white;
+    }
+}

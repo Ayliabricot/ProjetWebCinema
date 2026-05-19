@@ -97,5 +97,4 @@ function afficherCasting(data) {
     section.appendChild(conteneur);
 }
 
-
 loadData();

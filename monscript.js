@@ -1,3 +1,9 @@
+const API_KEY = "4ec6eac902806dbb1cbe874e60ac5cf2";
+
+const inputRecherche = document.querySelector("#recherche");
+const sectionResultats = document.querySelector("#resultats");
+let timeout;
+
 async function loadData(choix,choixInverse){
     let boutonActif;
     let boutonInactif;
@@ -50,7 +56,6 @@ async function loadData(choix,choixInverse){
     let ok="Ok";
     let main=document.querySelector("main");
 
-    const API_KEY = "4ec6eac902806dbb1cbe874e60ac5cf2";
     const data = await fetch(`https://api.themoviedb.org/3/${tendanceValeurUrl}?api_key=${API_KEY}&language=fr-FR`)
         .then(response => response.json())
         .catch(error => ok="Erreur : " + error);
@@ -109,7 +114,7 @@ function afficher(films,choix,choixInverse) {
             window.location.href = 'pageFilm/nouvellePage.html';
         });
  
-        const note = Math.round(film.vote_average * 10); // sur 100 pour le cercle
+        const note = Math.round(film.vote_average * 10);
  
         carte.innerHTML = `
             <div class="affiche">
@@ -129,7 +134,86 @@ function afficher(films,choix,choixInverse) {
  
     section.appendChild(conteneur);
 }
- 
+
+inputRecherche.addEventListener("input", () => {
+    clearTimeout(timeout);
+    const valeur = inputRecherche.value.trim();
+
+    if (valeur === "") {
+        sectionResultats.innerHTML = "";
+        sectionResultats.style.display = "none";
+        return;
+    }
+
+    timeout = setTimeout(async () => {
+        const data = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=fr-FR&query=${encodeURIComponent(valeur)}`)
+            .then(r => r.json())
+            .catch(e => console.error(e));
+
+        sectionResultats.innerHTML = "";
+
+        if (!data.results || data.results.length === 0) {
+            sectionResultats.style.display = "flex";
+            sectionResultats.innerHTML = `
+                <h1>Résultats</h1>
+                <p style="margin-left:8%">Aucun résultat trouvé.</p>`;
+            return;
+        }
+
+        sectionResultats.style.display = "flex";
+
+        const conteneur = document.createElement("div");
+        conteneur.innerHTML = `
+            <div class="conteneurMenuSection">
+                <h1>Résultats</h1>
+            </div>
+        `;
+
+        const liste = document.createElement("div");
+        liste.style.cssText = "margin-left:7%; display:flex; justify-content:space-around; flex-direction:row; flex-wrap:wrap;";
+
+        data.results.slice(0, 8).forEach(item => {
+            const estSerie = item.media_type === "tv";
+            const titre = estSerie ? item.name : item.title;
+            const date = estSerie ? item.first_air_date : item.release_date;
+            if (!titre) return;
+
+            const note = Math.round((item.vote_average || 0) * 10);
+
+            const carte = document.createElement("div");
+            carte.classList.add("carteFilm");
+            carte.addEventListener("click", () => {
+                localStorage.setItem("filmSelectionne", JSON.stringify(item));
+                window.location.href = "pageFilm/nouvellePage.html";
+            });
+
+            carte.innerHTML = `
+                <div class="affiche">
+                    <img src="${item.poster_path ? 'https://image.tmdb.org/t/p/w500' + item.poster_path : 'images/photoParDefaut.png'}" alt="${titre}"/>
+                    <div class="note">
+                        <span>${note}%</span>
+                    </div>
+                </div>
+                <div class="infoFilm">
+                    <h3>${titre}</h3>
+                    <p>${date ? new Date(date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }) : estSerie ? 'Série' : 'Film'}</p>
+                </div>
+            `;
+            liste.appendChild(carte);
+        });
+
+        conteneur.appendChild(liste);
+        sectionResultats.appendChild(conteneur);
+    }, 400);
+
+});
+
+document.addEventListener("click", (e) => {
+    if (!sectionResultats.contains(e.target) && e.target !== inputRecherche) {
+        sectionResultats.innerHTML = "";
+        sectionResultats.style.display = "none";
+    }
+});
 
 loadData("semaine","aujourdhui");
 loadData("populairesSeries","meilleuresSeries")
