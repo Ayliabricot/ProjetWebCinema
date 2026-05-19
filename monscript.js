@@ -104,6 +104,10 @@ function afficher(films,choix,choixInverse) {
         }
         const carte = document.createElement("div");
         carte.classList.add("carteFilm");
+        carte.addEventListener('click', () => {
+            localStorage.setItem('filmSelectionne', JSON.stringify(film));
+            window.location.href = 'pageFilm/nouvellePage.html';
+        });
  
         const note = Math.round(film.vote_average * 10); // sur 100 pour le cercle
  
