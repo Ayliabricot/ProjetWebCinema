@@ -218,3 +218,27 @@ document.addEventListener("click", (e) => {
 loadData("semaine","aujourdhui");
 loadData("populairesSeries","meilleuresSeries")
 loadData("populairesFilms","meilleursFilms")
+
+
+//La partie qui suit est utile pour le responsive, cet élément n'est pas visible sur nos ordinateurs
+const burger = document.querySelector("#burgerMenu");
+const nav = document.querySelector("#conteneurHeader");
+ 
+if (burger && nav) {
+    burger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        nav.classList.toggle("ouvert");
+    });
+ 
+    document.addEventListener("click", (e) => {
+        if (!nav.contains(e.target) && e.target !== burger) {
+            nav.classList.remove("ouvert");
+        }
+    });
+ 
+    nav.querySelectorAll("a").forEach(lien => {
+        lien.addEventListener("click", () => {
+            nav.classList.remove("ouvert");
+        });
+    });
+}
